@@ -1,6 +1,6 @@
 from settings import *
 import random
-
+from tetris import *
 
 class Block(pg.sprite.Sprite):
     def __init__(self, tetromino, pos):
@@ -67,7 +67,6 @@ class Tetromino:
         self.blocks = [Block(self, pos) for pos in TETROMINOES[self.shape]]
         self.landing = False
         self.current = current
-
     def rotate(self):
         pivot_pos = self.blocks[0].pos
         new_block_positions = [block.rotate(pivot_pos) for block in self.blocks]
@@ -89,8 +88,5 @@ class Tetromino:
                 block.pos += move_direction
         elif direction == 'down':
             self.landing = True
-
-    def drop(self)
-
     def update(self):
         self.move(direction='down')

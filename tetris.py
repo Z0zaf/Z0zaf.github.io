@@ -2,6 +2,7 @@ from settings import *
 import math
 from tetromino import Tetromino
 import pygame.freetype as ft
+import random
 
 
 class Text:
@@ -34,7 +35,12 @@ class Tetris:
         self.app = app
         self.sprite_group = pg.sprite.Group()
         self.field_array = self.get_field_array()
-        self.tetromino = Tetromino(self)
+        self.possible_pieces = TETROMINOES
+        self.tetromino = Tetromino(self, current = True,random.choice(possible_pieces))
+        if self.possible_pieces[0]:
+            possible_pieces[tetromino].remove()
+        else:
+            possible_pieces = TETROMINOES
         self.next_tetromino = Tetromino(self, current=False)
         self.speed_up = False
 
