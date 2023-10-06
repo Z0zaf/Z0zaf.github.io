@@ -36,12 +36,8 @@ class Tetris:
         self.sprite_group = pg.sprite.Group()
         self.field_array = self.get_field_array()
         self.possible_pieces = TETROMINOES
-        self.tetromino = Tetromino(self, current = True,random.choice(possible_pieces))
-        if self.possible_pieces[0]:
-            possible_pieces[tetromino].remove()
-        else:
-            possible_pieces = TETROMINOES
-        self.next_tetromino = Tetromino(self, current=False)
+        self.tetromino = get_minos()[1]
+        self.next_tetromino = get_minos()[2]
         self.speed_up = False
 
         self.score = 0
@@ -51,6 +47,14 @@ class Tetris:
     def get_score(self):
         self.score += self.points_per_lines[self.full_lines]
         self.full_lines = 0
+    def get_minos(self):
+        tetromino = Tetromino(self, current = True, random.choice(possible_pieces))
+        if self.possible_pieces[0]:
+            possible_pieces[tetromino].remove()
+        else:
+            possible_pieces = TETROMINOES
+        next_tetromino = Tetromino(self, current = False, random.choice(possible_pieces))
+        return([tetromino, next_tetromino])
 
     def check_full_lines(self):
         row = FIELD_H - 1
