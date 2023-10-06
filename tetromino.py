@@ -60,9 +60,9 @@ class Block(pg.sprite.Sprite):
 
 
 class Tetromino:
-    def __init__(self, tetris, current=True):
+    def __init__(self, tetris, current=True, mino):
         self.tetris = tetris
-        self.shape = random.choice(list(TETROMINOES.keys()))
+        self.shape = random.choice(mino)
         self.image = random.choice(tetris.app.images)
         self.blocks = [Block(self, pos) for pos in TETROMINOES[self.shape]]
         self.landing = False
